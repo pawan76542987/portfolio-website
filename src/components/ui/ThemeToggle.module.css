@@ -1,0 +1,43 @@
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  color: var(--foreground-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.toggleBtn:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 40px;
+  height: 40px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

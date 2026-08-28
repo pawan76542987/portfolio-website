@@ -1,0 +1,102 @@
+.principlesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .principlesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .principlesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.principleCard {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.principleCard:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-3px);
+  background-color: var(--surface-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.principleNumber {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.principleIcon {
+  color: var(--foreground-subtle);
+  transition: color var(--transition-fast) var(--ease-out);
+}
+
+.principleCard:hover .principleIcon {
+  color: var(--accent);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.principleTitle {
+  font-size: 1.25rem;
+  color: var(--foreground);
+}
+
+.principleSummary {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground-secondary);
+}
+
+.principleDeepDive {
+  font-size: 0.875rem;
+  color: var(--foreground-muted);
+  line-height: 1.6;
+}
+
+.cardFooter {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.impactLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+}
+
+.impactText {
+  font-size: 0.8125rem;
+  color: var(--foreground-secondary);
+  line-height: 1.45;
+}

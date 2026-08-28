@@ -1,0 +1,74 @@
+.visualizerContainer {
+  background-color: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal) var(--ease-out);
+}
+
+.visualizerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--surface-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.terminalDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.headerLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--foreground);
+  letter-spacing: 0.06em;
+}
+
+.activeTag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: #34d399;
+}
+
+.diagramCanvas {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--card-gradient);
+}
+
+.svgDiagram {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+}
+
+.visualizerFooter {
+  padding: 0.85rem 1.25rem;
+  background-color: var(--surface-elevated);
+  border-top: 1px solid var(--border);
+}
+
+.footerDescription {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--foreground-muted);
+}

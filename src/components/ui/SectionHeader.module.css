@@ -1,0 +1,32 @@
+.header {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  color: var(--foreground);
+}
+
+.subtitle {
+  max-width: var(--max-width-reading);
+  color: var(--foreground-secondary);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.center .subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}

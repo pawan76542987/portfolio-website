@@ -1,0 +1,281 @@
+.contactLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 992px) {
+  .contactLayout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-10);
+  }
+}
+
+.channelsCard,
+.formCard {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.headerLabel {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.secureTag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+}
+
+.emailBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.emailLabel,
+.socialsLabel,
+.locLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  letter-spacing: 0.06em;
+}
+
+.emailRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.emailLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: all var(--transition-fast) var(--ease-out);
+  flex-grow: 1;
+}
+
+.emailLink:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.emailIcon {
+  color: var(--accent);
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--foreground-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.copyBtn:hover {
+  background-color: var(--surface-hover);
+  color: var(--foreground);
+  border-color: var(--border-strong);
+}
+
+.checkIcon {
+  color: #34d399;
+}
+
+.socialsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+}
+
+@media (min-width: 600px) {
+  .socialsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.socialCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.85rem 1rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.socialCard:hover {
+  border-color: var(--accent-border);
+  background-color: var(--surface-hover);
+  transform: translateY(-2px);
+}
+
+.socialIcon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.socialPlatform {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.socialHandle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--foreground-muted);
+}
+
+.locationBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.locValue {
+  font-size: 0.875rem;
+  color: var(--foreground-secondary);
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 600px) {
+  .formGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.required {
+  color: #f43f5e;
+}
+
+.optional {
+  color: var(--foreground-subtle);
+  font-weight: 400;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--foreground);
+  font-size: 0.9375rem;
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--accent);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--foreground-subtle);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  gap: var(--space-3);
+}
+
+.successIcon {
+  color: #34d399;
+  margin-bottom: var(--space-2);
+}
+
+.successTitle {
+  font-size: 1.5rem;
+  color: var(--foreground);
+}
+
+.successText {
+  font-size: 0.9375rem;
+  color: var(--foreground-secondary);
+  max-width: 440px;
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+}

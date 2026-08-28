@@ -1,0 +1,174 @@
+.aboutLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: flex-start;
+}
+
+@media (min-width: 992px) {
+  .aboutLayout {
+    grid-template-columns: 1.5fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+.narrativeColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.leadParagraph {
+  font-size: clamp(1.125rem, 1.4vw, 1.25rem);
+  color: var(--foreground);
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.bodyParagraph {
+  font-size: 1rem;
+  color: var(--foreground-secondary);
+  line-height: 1.7;
+}
+
+.bodyParagraph strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 600px) {
+  .pillarsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pillarCard {
+  padding: 1.25rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.pillarCard:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+  background-color: var(--surface-hover);
+}
+
+.pillarIcon {
+  color: var(--accent);
+}
+
+.pillarTitle {
+  font-size: 1.0625rem;
+  color: var(--foreground);
+}
+
+.pillarText {
+  font-size: 0.875rem;
+  color: var(--foreground-secondary);
+  line-height: 1.55;
+}
+
+/* Profile Column */
+.profileColumn {
+  position: sticky;
+  top: 6rem;
+}
+
+.profileCard {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.profileEyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detailRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detailLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  letter-spacing: 0.06em;
+}
+
+.detailValue {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.focusListContainer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.focusListTitle {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  letter-spacing: 0.06em;
+}
+
+.focusList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.focusItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--foreground-secondary);
+}
+
+.checkIcon {
+  color: var(--accent);
+  flex-shrink: 0;
+}

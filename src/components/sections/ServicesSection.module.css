@@ -1,0 +1,125 @@
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .servicesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.serviceCard {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.serviceCard:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-3px);
+  background-color: var(--surface-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.serviceNumber {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.idealForBadge {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  background-color: var(--surface-elevated);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  text-align: right;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.serviceTitle {
+  font-size: 1.25rem;
+  color: var(--foreground);
+}
+
+.serviceSubtitle {
+  font-size: 0.875rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.serviceDescription {
+  font-size: 0.9375rem;
+  color: var(--foreground-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+}
+
+.deliverablesContainer {
+  padding: 0.85rem 1rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.deliverablesTitle {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  letter-spacing: 0.06em;
+}
+
+.deliverablesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.deliverableItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--foreground-secondary);
+}
+
+.checkIcon {
+  color: #34d399;
+  flex-shrink: 0;
+}
+
+.cardFooter {
+  padding-top: var(--space-2);
+}

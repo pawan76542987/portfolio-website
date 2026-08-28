@@ -1,0 +1,142 @@
+.heroSection {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: clamp(6.5rem, 12vh, 9rem);
+  padding-bottom: clamp(4rem, 8vh, 6rem);
+  overflow: hidden;
+}
+
+.ambientGlow {
+  position: absolute;
+  inset: 0;
+  background: var(--hero-glow);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: var(--max-width);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.techTag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--foreground-muted);
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  max-width: 980px;
+}
+
+.mainHeading {
+  color: var(--foreground);
+  line-height: 1.1;
+}
+
+.highlightText {
+  color: transparent;
+  background-image: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.supportingCopy {
+  max-width: 720px;
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--foreground-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.strongText {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.ctaGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: clamp(3rem, 6vh, 5rem);
+}
+
+/* Telemetry Dashboard Bar */
+.telemetryBar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  padding: 1.25rem 1.75rem;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .telemetryBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.telemetryItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.telemetryLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.telemetryValue {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.telemetryDivider {
+  display: none;
+  width: 1px;
+  height: 28px;
+  background-color: var(--border);
+}
+
+@media (min-width: 768px) {
+  .telemetryDivider {
+    display: block;
+  }
+}

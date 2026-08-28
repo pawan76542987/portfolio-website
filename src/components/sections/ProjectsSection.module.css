@@ -1,0 +1,228 @@
+.projectsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.projectCard {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-6);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+}
+
+.projectCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-border);
+  background-color: var(--surface-hover);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.metaLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.projectNumber {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.timeline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--foreground-subtle);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.projectTitle {
+  font-size: 1.5rem;
+  color: var(--foreground);
+  transition: color var(--transition-fast) var(--ease-out);
+}
+
+.projectCard:hover .projectTitle {
+  color: var(--accent);
+}
+
+.projectSummary {
+  font-size: 0.9375rem;
+  color: var(--foreground-secondary);
+  line-height: 1.6;
+}
+
+.highlightsContainer {
+  margin-top: var(--space-2);
+  padding: 0.85rem 1rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.highlightsLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--foreground-subtle);
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.highlightList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  color: var(--foreground-secondary);
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.techRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.caseStudyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.caseStudyBtn:hover {
+  background-color: var(--accent-muted);
+}
+
+.actionLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  color: var(--foreground-secondary);
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.iconLink:hover {
+  color: var(--foreground);
+  background-color: var(--surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+/* GitHub Exploration Card */
+.githubCard {
+  background-color: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all var(--transition-fast) var(--ease-out);
+}
+
+.githubCard:hover {
+  border-color: var(--accent);
+  background-color: var(--surface-hover);
+}
+
+.githubCardInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.githubHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.githubIcon {
+  color: var(--accent);
+}
+
+.githubTitle {
+  font-size: 1.35rem;
+  color: var(--foreground);
+}
+
+.githubDescription {
+  font-size: 0.9375rem;
+  color: var(--foreground-secondary);
+  line-height: 1.6;
+}
+
+.githubFooter {
+  margin-top: var(--space-2);
+}
