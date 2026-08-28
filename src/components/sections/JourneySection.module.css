@@ -9,7 +9,7 @@
 
 .timelineItem {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-3);
   position: relative;
 }
 
@@ -27,8 +27,8 @@
 }
 
 .timelineNode {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: var(--surface-elevated);
   border: 2px solid var(--accent);
@@ -37,7 +37,15 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
-  box-shadow: 0 0 12px var(--accent-glow);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+@media (min-width: 640px) {
+  .timelineNode {
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
 }
 
 .timelineLine {
@@ -53,11 +61,18 @@
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: 1.25rem 1rem;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
   transition: all var(--transition-fast) var(--ease-out);
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .timelineContent {
+    padding: 1.75rem;
+  }
 }
 
 .timelineContent:hover {
@@ -87,8 +102,15 @@
 }
 
 .roleTitle {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--foreground);
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .roleTitle {
+    font-size: 1.25rem;
+  }
 }
 
 .orgRow {
@@ -126,6 +148,7 @@
   border-radius: var(--radius-full);
   border: 1px solid var(--border);
   white-space: nowrap;
+  align-self: flex-start;
 }
 
 .itemDescription {
@@ -135,7 +158,7 @@
 }
 
 .highlightsBlock {
-  padding: 1rem;
+  padding: 0.85rem 1rem;
   background-color: var(--surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);

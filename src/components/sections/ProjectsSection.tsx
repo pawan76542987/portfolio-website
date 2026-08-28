@@ -14,6 +14,16 @@ import styles from './ProjectsSection.module.css';
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const handleCardKeyDown = (e: React.KeyboardEvent, project: Project) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      // Only trigger if target is the card itself, not child links/buttons
+      if (e.target === e.currentTarget) {
+        e.preventDefault();
+        setSelectedProject(project);
+      }
+    }
+  };
+
   return (
     <section id="work" className="section" aria-label="Selected Engineering Work">
       <div className="container">
@@ -30,7 +40,12 @@ export function ProjectsSection() {
               key={project.id}
               className={styles.projectCard}
               data-cursor="view"
+              tabIndex={0}
+              role="button"
+              aria-haspopup="dialog"
+              aria-label={`View ${project.title} Case Study`}
               onClick={() => setSelectedProject(project)}
+              onKeyDown={(e) => handleCardKeyDown(e, project)}
             >
               {/* Card Top Metadata */}
               <div className={styles.cardHeader}>
@@ -82,6 +97,7 @@ export function ProjectsSection() {
                   type="button"
                   className={styles.caseStudyBtn}
                   onClick={() => setSelectedProject(project)}
+                  aria-label={`Open Case Study for ${project.title}`}
                 >
                   <BookOpen size={16} />
                   <span>Case Study</span>

@@ -6,12 +6,13 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '@/components/ui/Icons';
-import { Mail, Copy, Check, Send, Sparkles } from 'lucide-react';
+import { Mail, Copy, Check, Send, Sparkles, Phone } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import styles from './ContactSection.module.css';
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +31,16 @@ export function ContactSection() {
         origin: { y: 0.8 },
       });
       setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Fallback
+    }
+  };
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.phone);
+      setPhoneCopied(true);
+      setTimeout(() => setPhoneCopied(false), 2500);
     } catch {
       // Fallback
     }
@@ -83,6 +94,7 @@ export function ContactSection() {
                 </Badge>
               </div>
 
+              {/* Primary Email */}
               <div className={styles.emailBlock}>
                 <span className={styles.emailLabel}>PRIMARY EMAIL ADDRESS</span>
                 <div className={styles.emailRow}>
@@ -103,6 +115,28 @@ export function ContactSection() {
                 </div>
               </div>
 
+              {/* Secondary Phone Contact */}
+              <div className={styles.emailBlock}>
+                <span className={styles.emailLabel}>PHONE TRANSMISSION (SECONDARY)</span>
+                <div className={styles.emailRow}>
+                  <a href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`} className={styles.emailLink}>
+                    <Phone size={18} className={styles.emailIcon} />
+                    <span>{personalInfo.phone}</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={copyPhone}
+                    className={styles.copyBtn}
+                    aria-label="Copy phone number"
+                    title="Copy phone number"
+                  >
+                    {phoneCopied ? <Check size={16} className={styles.checkIcon} /> : <Copy size={16} />}
+                    <span>{phoneCopied ? 'Copied' : 'Copy'}</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Social Channels */}
               <div className={styles.socialsBlock}>
                 <span className={styles.socialsLabel}>NETWORK CHANNELS</span>
                 <div className={styles.socialsGrid}>

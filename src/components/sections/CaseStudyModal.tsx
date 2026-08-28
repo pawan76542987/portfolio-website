@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Project } from '@/types';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
@@ -14,11 +14,50 @@ interface CaseStudyModalProps {
 }
 
 export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (!project) return;
 
+    // Save previous active element to restore focus on close
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
+    // Focus close button initially
+    setTimeout(() => {
+      closeBtnRef.current?.focus();
+    }, 50);
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+        return;
+      }
+
+      // Trap focus within modal
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -27,6 +66,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
+      previousFocusRef.current?.focus();
     };
   }, [project, onClose]);
 
@@ -40,7 +80,11 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
       aria-modal="true"
       aria-labelledby="case-study-title"
     >
-      <div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={modalRef}
+        className={styles.modalContainer}
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Modal Header */}
         <div className={styles.modalHeader}>
           <div className={styles.headerMeta}>
@@ -50,10 +94,11 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
             </Badge>
           </div>
           <button
+            ref={closeBtnRef}
             type="button"
             className={styles.closeBtn}
             onClick={onClose}
-            aria-label="Close case study"
+            aria-label="Close case study dialog"
           >
             <X size={20} />
           </button>

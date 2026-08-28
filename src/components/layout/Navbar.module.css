@@ -26,8 +26,15 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   text-decoration: none;
+  min-height: 40px;
+}
+
+@media (min-width: 640px) {
+  .brand {
+    gap: var(--space-3);
+  }
 }
 
 .brandText {
@@ -38,9 +45,16 @@
 .brandName {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--foreground);
   letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+@media (min-width: 480px) {
+  .brandName {
+    font-size: 1rem;
+  }
 }
 
 .brandRole {
@@ -49,6 +63,13 @@
   color: var(--foreground-subtle);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  display: none;
+}
+
+@media (min-width: 540px) {
+  .brandRole {
+    display: block;
+  }
 }
 
 .desktopNav {
@@ -114,8 +135,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-sm);
   background-color: var(--surface-elevated);
   border: 1px solid var(--border);
@@ -138,7 +159,7 @@
 .mobileOverlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 2000;
@@ -148,8 +169,8 @@
 }
 
 .mobileDrawer {
-  width: 85%;
-  max-width: 380px;
+  width: 88%;
+  max-width: 360px;
   height: 100%;
   background-color: var(--background-secondary);
   border-left: 1px solid var(--border);
@@ -159,6 +180,7 @@
   justify-content: space-between;
   animation: slideLeft 0.25s var(--ease-out);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes fadeIn {
@@ -191,8 +213,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-sm);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -218,6 +240,7 @@
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 600;
+  min-height: 48px;
   transition: all var(--transition-fast) var(--ease-out);
 }
 

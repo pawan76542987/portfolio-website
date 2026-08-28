@@ -125,6 +125,17 @@ export default function RootLayout({
     ],
   };
 
+  const themeScript = `
+    (function() {
+      try {
+        var stored = localStorage.getItem('pawan-portfolio-theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      } catch (e) {}
+    })();
+  `;
+
   return (
     <html
       lang="en"
@@ -133,6 +144,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

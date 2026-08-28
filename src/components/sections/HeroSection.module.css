@@ -54,6 +54,7 @@
 .mainHeading {
   color: var(--foreground);
   line-height: 1.1;
+  word-break: break-word;
 }
 
 .highlightText {
@@ -82,6 +83,14 @@
   flex-wrap: wrap;
   gap: var(--space-4);
   margin-bottom: clamp(3rem, 6vh, 5rem);
+  width: 100%;
+}
+
+@media (max-width: 540px) {
+  .ctaGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 /* Telemetry Dashboard Bar */
@@ -97,6 +106,14 @@
   border: 1px solid var(--surface-glass-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 480px) {
+  .telemetryBar {
+    grid-template-columns: 1fr;
+    padding: 1rem 1.25rem;
+    gap: var(--space-3);
+  }
 }
 
 @media (min-width: 768px) {

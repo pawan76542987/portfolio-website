@@ -46,18 +46,24 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     const particleCount = isMobile ? 60 : 140;
 
     // Scene, Camera, Renderer Setup
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    const width = container.clientWidth || window.innerWidth;
+    const height = container.clientHeight || window.innerHeight;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     camera.position.set(0, 0, 14);
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: !isMobile,
-      alpha: true,
-      powerPreference: 'high-performance',
-    });
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: !isMobile,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+    } catch {
+      setWebglSupported(false);
+      return;
+    }
 
     const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 2);
     renderer.setPixelRatio(dpr);
@@ -71,8 +77,6 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
     const primaryColor = isDark ? 0x38bdf8 : 0x0284c7; // Cyan / Azure
     const secondaryColor = isDark ? 0x818cf8 : 0x6366f1; // Indigo / Violet
-    const nodeColor = isDark ? 0xe2e8f0 : 0x1e293b;
-    const lineColor = isDark ? 0x38bdf8 : 0x0284c7;
     const gridColor = isDark ? 0x1e293b : 0xcbd5e1;
 
     // 1. Grid Planes (Digital Laboratory Spatial Reference)
@@ -88,7 +92,8 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     const nodeMeshes: THREE.Mesh[] = [];
 
     const nodeGeometry = new THREE.OctahedronGeometry(0.12, 0);
-    const nodeMaterial = new THREE.MeshStandardMaterial({
+    // Shared single material for optimal memory usage & instant theme synchronization
+    const sharedNodeMaterial = new THREE.MeshStandardMaterial({
       color: primaryColor,
       emissive: primaryColor,
       emissiveIntensity: isDark ? 0.6 : 0.3,
@@ -118,7 +123,7 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
       );
       nodeVelocities.push(vel);
 
-      const mesh = new THREE.Mesh(nodeGeometry, nodeMaterial.clone());
+      const mesh = new THREE.Mesh(nodeGeometry, sharedNodeMaterial);
       mesh.position.copy(pos);
       const scale = 0.6 + Math.random() * 0.8;
       mesh.scale.set(scale, scale, scale);
@@ -148,13 +153,11 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     // 4. Data Stream Particles (Flowing Pulses)
     const particleGeometry = new THREE.BufferGeometry();
     const particlePosArray = new Float32Array(particleCount * 3);
-    const particleLife = new Float32Array(particleCount);
 
     for (let i = 0; i < particleCount; i++) {
       particlePosArray[i * 3] = (Math.random() - 0.5) * spreadX;
       particlePosArray[i * 3 + 1] = (Math.random() - 0.5) * spreadY;
       particlePosArray[i * 3 + 2] = (Math.random() - 0.5) * spreadZ;
-      particleLife[i] = Math.random();
     }
 
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePosArray, 3));
@@ -189,8 +192,8 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
 
     const onMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const x = (e.clientX - rect.left) / (rect.width || window.innerWidth) - 0.5;
+      const y = (e.clientY - rect.top) / (rect.height || window.innerHeight) - 0.5;
       targetMouseX = x * 1.5;
       targetMouseY = y * 1.5;
     };
@@ -207,8 +210,8 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
 
       pointLight1.color.setHex(newPrimary);
       pointLight2.color.setHex(newSecondary);
-      nodeMaterial.color.setHex(newPrimary);
-      nodeMaterial.emissive.setHex(newPrimary);
+      sharedNodeMaterial.color.setHex(newPrimary);
+      sharedNodeMaterial.emissive.setHex(newPrimary);
       particleMaterial.color.setHex(newSecondary);
       gridHelper.material.opacity = newIsDark ? 0.18 : 0.22;
       (gridHelper.material as THREE.LineBasicMaterial).color.setHex(newGrid);
@@ -238,7 +241,6 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
       if (!isIntersecting) return;
 
       const elapsedTime = clock.getElapsedTime();
-      const delta = clock.getDelta();
 
       // Smooth mouse interpolation
       if (!prefersReducedMotion) {
@@ -329,8 +331,8 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     // Resize Handler
     const handleResize = () => {
       if (!container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
+      const w = container.clientWidth || window.innerWidth;
+      const h = container.clientHeight || window.innerHeight;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
@@ -347,7 +349,7 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
       observer.disconnect();
 
       nodeGeometry.dispose();
-      nodeMaterial.dispose();
+      sharedNodeMaterial.dispose();
       lineGeometry.dispose();
       lineMaterial.dispose();
       particleGeometry.dispose();

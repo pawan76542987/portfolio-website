@@ -83,19 +83,32 @@
 
 /* Profile Column */
 .profileColumn {
-  position: sticky;
-  top: 6rem;
+  position: static;
+}
+
+@media (min-width: 992px) {
+  .profileColumn {
+    position: sticky;
+    top: 6rem;
+  }
 }
 
 .profileCard {
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-5);
   box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 640px) {
+  .profileCard {
+    padding: 1.75rem;
+    gap: var(--space-6);
+  }
 }
 
 .profileHeader {
