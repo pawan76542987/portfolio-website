@@ -14,7 +14,7 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
-    // Detect WebGL support
+    // Detect WebGL support safely
     const checkWebGL = () => {
       try {
         const canvas = document.createElement('canvas');
@@ -49,10 +49,6 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || window.innerHeight;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 14);
-
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({
@@ -65,10 +61,20 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
       return;
     }
 
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.set(0, 0, 14);
+
     const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 2);
     renderer.setPixelRatio(dpr);
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
+
+    // Prevent crashing on GPU context resets (e.g. mobile tab suspension)
+    const onContextLost = (e: Event) => {
+      e.preventDefault();
+    };
+    renderer.domElement.addEventListener('webglcontextlost', onContextLost, false);
 
     container.appendChild(renderer.domElement);
     setIsLoaded(true);
@@ -92,7 +98,6 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
     const nodeMeshes: THREE.Mesh[] = [];
 
     const nodeGeometry = new THREE.OctahedronGeometry(0.12, 0);
-    // Shared single material for optimal memory usage & instant theme synchronization
     const sharedNodeMaterial = new THREE.MeshStandardMaterial({
       color: primaryColor,
       emissive: primaryColor,
@@ -333,9 +338,11 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
       if (!container) return;
       const w = container.clientWidth || window.innerWidth;
       const h = container.clientHeight || window.innerHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      if (w > 0 && h > 0) {
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
     };
 
     window.addEventListener('resize', handleResize, { passive: true });
@@ -347,6 +354,10 @@ export function HeroScene({ theme = 'dark' }: HeroSceneProps) {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('themechange', onThemeChange);
       observer.disconnect();
+
+      if (renderer && renderer.domElement) {
+        renderer.domElement.removeEventListener('webglcontextlost', onContextLost);
+      }
 
       nodeGeometry.dispose();
       sharedNodeMaterial.dispose();

@@ -33,6 +33,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pawanuniyara.dev'),
+  alternates: {
+    canonical: 'https://pawanuniyara.dev',
+  },
   title: 'Pawan Uniyara — Full-Stack Developer & CSE (AI/ML) Undergraduate',
   description:
     'Personal engineering portfolio of Pawan Uniyara. Combining algorithmic problem solving in C++ with modern full-stack web development (React, Next.js, WebGL) and clean architecture.',

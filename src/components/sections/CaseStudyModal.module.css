@@ -12,6 +12,12 @@
   animation: fadeIn 0.2s var(--ease-out);
 }
 
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 0.75rem;
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -51,6 +57,12 @@
   background-color: var(--surface-elevated);
 }
 
+@media (max-width: 480px) {
+  .modalHeader {
+    padding: 1rem 1.25rem;
+  }
+}
+
 .headerMeta {
   display: flex;
   align-items: center;
@@ -69,8 +81,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -90,11 +102,20 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 480px) {
+  .modalBody {
+    padding: 1.25rem;
+    gap: var(--space-4);
+  }
 }
 
 .title {
   color: var(--foreground);
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  word-break: break-word;
 }
 
 .shortSummary {
@@ -108,6 +129,13 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .linkRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .divider {
@@ -233,6 +261,14 @@
   padding: 1rem 1.75rem;
   border-top: 1px solid var(--border);
   background-color: var(--surface-elevated);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .modalFooter {
+    padding: 1rem 1.25rem;
+  }
 }
 
 .footerNote {
