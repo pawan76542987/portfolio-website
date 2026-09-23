@@ -5,19 +5,24 @@
   font-family: var(--font-mono);
   font-weight: 500;
   border-radius: var(--radius-full);
-  white-space: nowrap;
+  max-width: 100%;
+  word-break: normal;
+  overflow-wrap: break-word;
   letter-spacing: 0.02em;
+  line-height: 1.35;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
 .sm {
   font-size: 0.6875rem;
   padding: 0.2rem 0.55rem;
+  min-height: 22px;
 }
 
 .md {
   font-size: 0.75rem;
   padding: 0.25rem 0.75rem;
+  min-height: 26px;
 }
 
 .default {

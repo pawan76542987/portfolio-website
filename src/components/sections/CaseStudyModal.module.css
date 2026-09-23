@@ -8,14 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: clamp(0.5rem, 2vw, 1.5rem);
   animation: fadeIn 0.2s var(--ease-out);
-}
-
-@media (max-width: 480px) {
-  .modalOverlay {
-    padding: 0.75rem;
-  }
 }
 
 @keyframes fadeIn {
@@ -27,6 +21,7 @@
   width: 100%;
   max-width: 780px;
   max-height: 90vh;
+  max-height: 92dvh;
   background-color: var(--surface);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
@@ -35,6 +30,13 @@
   flex-direction: column;
   overflow: hidden;
   animation: scaleUp 0.25s var(--ease-out);
+}
+
+@media (max-width: 540px) {
+  .modalContainer {
+    max-height: 96dvh;
+    border-radius: var(--radius-md);
+  }
 }
 
 @keyframes scaleUp {
@@ -52,21 +54,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.75rem;
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 3vw, 1.75rem);
   border-bottom: 1px solid var(--border);
   background-color: var(--surface-elevated);
-}
-
-@media (max-width: 480px) {
-  .modalHeader {
-    padding: 1rem 1.25rem;
-  }
+  flex-shrink: 0;
 }
 
 .headerMeta {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .projectNumber {
@@ -81,13 +79,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: var(--radius-sm);
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--foreground-secondary);
   cursor: pointer;
+  touch-action: manipulation;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -97,19 +98,12 @@
 }
 
 .modalBody {
-  padding: 1.75rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: clamp(1rem, 2.5vw, 1.5rem);
   -webkit-overflow-scrolling: touch;
-}
-
-@media (max-width: 480px) {
-  .modalBody {
-    padding: 1.25rem;
-    gap: var(--space-4);
-  }
 }
 
 .title {

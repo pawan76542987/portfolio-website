@@ -1,12 +1,15 @@
 .servicesGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  min-width: 0;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .servicesGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
   }
 }
 
@@ -20,11 +23,12 @@
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: clamp(1.15rem, 3.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-4);
+  min-width: 0;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -39,6 +43,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--space-2);
 }
 
@@ -58,17 +63,20 @@
   border-radius: var(--radius-xs);
   border: 1px solid var(--border-subtle);
   text-align: right;
+  max-width: 100%;
 }
 
 .cardBody {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  min-width: 0;
 }
 
 .serviceTitle {
-  font-size: 1.25rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.25rem);
   color: var(--foreground);
+  word-break: break-word;
 }
 
 .serviceSubtitle {
@@ -85,7 +93,7 @@
 }
 
 .deliverablesContainer {
-  padding: 0.85rem 1rem;
+  padding: clamp(0.65rem, 2vw, 0.85rem) clamp(0.75rem, 2.5vw, 1rem);
   background-color: var(--surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
@@ -113,6 +121,7 @@
   gap: var(--space-2);
   font-size: 0.8125rem;
   color: var(--foreground-secondary);
+  line-height: 1.4;
 }
 
 .checkIcon {

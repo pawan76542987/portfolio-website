@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Monogram } from '@/components/ui/Monogram';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { SoundToggle } from '@/components/ui/SoundToggle';
 import { Button } from '@/components/ui/Button';
 import { personalInfo } from '@/data/socials';
+import { useSound } from '@/hooks/useSound';
 import { Menu, X, FileDown, ArrowUpRight } from 'lucide-react';
 import styles from './Navbar.module.css';
 
@@ -22,6 +24,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('work');
+  const { playClick } = useSound();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,16 +112,21 @@ export function Navbar() {
             size="sm"
             leftIcon={<FileDown size={15} />}
             className={styles.resumeBtn}
+            onClick={playClick}
           >
             Resume
           </Button>
+          <SoundToggle />
           <ThemeToggle />
 
           {/* Mobile Menu Toggle */}
           <button
             type="button"
             className={styles.mobileMenuToggle}
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => {
+              playClick();
+              setMobileOpen(!mobileOpen);
+            }}
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
@@ -139,14 +147,21 @@ export function Navbar() {
           >
             <div className={styles.mobileHeader}>
               <span className={styles.mobileTitle}>Navigation</span>
-              <button
-                type="button"
-                className={styles.closeDrawerBtn}
-                onClick={() => setMobileOpen(false)}
-                aria-label="Close menu"
-              >
-                <X size={20} />
-              </button>
+              <div className={styles.mobileControls}>
+                <SoundToggle />
+                <ThemeToggle />
+                <button
+                  type="button"
+                  className={styles.closeDrawerBtn}
+                  onClick={() => {
+                    playClick();
+                    setMobileOpen(false);
+                  }}
+                  aria-label="Close menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             <nav className={styles.mobileNav}>

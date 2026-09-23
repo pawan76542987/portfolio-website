@@ -43,8 +43,11 @@ export function CustomCursor() {
         dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
       }
 
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
+      const target = e.target instanceof Element ? e.target : null;
+      if (!target || typeof target.closest !== 'function') {
+        setCursorState('default');
+        return;
+      }
 
       const viewTarget = target.closest('[data-cursor="view"]');
       const interactive = target.closest('a, button, [role="button"], input, textarea, select, [data-cursor="pointer"]');

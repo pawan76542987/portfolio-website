@@ -1,0 +1,117 @@
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 44px;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  color: var(--foreground-secondary);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all var(--transition-fast) var(--ease-out);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  user-select: none;
+}
+
+.toggleBtn:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.toggleBtn.active {
+  background-color: var(--accent-muted);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.soundWaves {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 12px;
+}
+
+.waveBar {
+  width: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: height var(--transition-fast) ease;
+}
+
+.waveBar:nth-child(1) {
+  height: 4px;
+}
+.waveBar:nth-child(2) {
+  height: 10px;
+}
+.waveBar:nth-child(3) {
+  height: 6px;
+}
+
+.active .waveBar:nth-child(1) {
+  animation: soundPulse1 0.8s ease-in-out infinite alternate;
+}
+.active .waveBar:nth-child(2) {
+  animation: soundPulse2 0.8s ease-in-out infinite 0.2s alternate;
+}
+.active .waveBar:nth-child(3) {
+  animation: soundPulse3 0.8s ease-in-out infinite 0.4s alternate;
+}
+
+@keyframes soundPulse1 {
+  0% { height: 4px; }
+  100% { height: 10px; }
+}
+
+@keyframes soundPulse2 {
+  0% { height: 11px; }
+  100% { height: 5px; }
+}
+
+@keyframes soundPulse3 {
+  0% { height: 6px; }
+  100% { height: 12px; }
+}
+
+.placeholder {
+  width: 44px;
+  height: 44px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (max-width: 640px) {
+  .toggleBtn {
+    padding: 0;
+    width: 44px;
+    height: 44px;
+  }
+  .soundWaves {
+    display: none;
+  }
+}

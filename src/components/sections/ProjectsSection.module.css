@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-6);
+  min-width: 0;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -14,13 +16,14 @@
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: clamp(1.15rem, 3.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-5);
   cursor: pointer;
   position: relative;
+  min-width: 0;
   transition: all var(--transition-fast) var(--ease-out);
   box-shadow: var(--shadow-sm);
 }
@@ -43,7 +46,8 @@
 .metaLeft {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .projectNumber {
@@ -64,11 +68,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  min-width: 0;
 }
 
 .projectTitle {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   color: var(--foreground);
+  word-break: break-word;
   transition: color var(--transition-fast) var(--ease-out);
 }
 
@@ -77,14 +83,14 @@
 }
 
 .projectSummary {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
   color: var(--foreground-secondary);
   line-height: 1.6;
 }
 
 .highlightsContainer {
   margin-top: var(--space-2);
-  padding: 0.85rem 1rem;
+  padding: clamp(0.65rem, 2vw, 0.85rem) clamp(0.75rem, 2.5vw, 1rem);
   background-color: var(--surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
@@ -111,6 +117,7 @@
   gap: var(--space-2);
   font-size: 0.8125rem;
   color: var(--foreground-secondary);
+  line-height: 1.4;
 }
 
 .dot {
@@ -131,8 +138,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--space-4);
+  padding-top: var(--space-3);
   border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .caseStudyBtn {
@@ -144,8 +153,10 @@
   font-weight: 600;
   color: var(--accent);
   background: transparent;
-  padding: 0.4rem 0.6rem;
-  border-radius: var(--radius-xs);
+  padding: 0.5rem 0.85rem;
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  touch-action: manipulation;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -163,12 +174,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: var(--radius-sm);
   background-color: var(--surface-elevated);
   border: 1px solid var(--border);
   color: var(--foreground-secondary);
+  touch-action: manipulation;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -184,10 +198,11 @@
   background-color: var(--surface);
   border: 1px dashed var(--border-strong);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: clamp(1.15rem, 3.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -200,12 +215,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  min-width: 0;
 }
 
 .githubHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .githubIcon {
@@ -213,7 +231,7 @@
 }
 
 .githubTitle {
-  font-size: 1.35rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
   color: var(--foreground);
 }
 

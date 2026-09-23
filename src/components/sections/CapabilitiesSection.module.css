@@ -1,8 +1,10 @@
 .capabilitiesLayout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-8);
+  gap: var(--space-6);
   align-items: flex-start;
+  min-width: 0;
+  width: 100%;
 }
 
 @media (min-width: 900px) {
@@ -18,6 +20,14 @@
   overflow-x: auto;
   gap: var(--space-2);
   padding-bottom: var(--space-2);
+  min-width: 0;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.categoryTabs::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 900px) {
@@ -34,7 +44,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: 0.85rem 1.15rem;
+  padding: 0.75rem 1rem;
+  min-height: 44px;
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -44,7 +55,9 @@
   font-weight: 600;
   text-align: left;
   white-space: nowrap;
+  flex-shrink: 0;
   cursor: pointer;
+  touch-action: manipulation;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -76,6 +89,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  min-width: 0;
+  width: 100%;
 }
 
 .categoryHeader {
@@ -85,12 +100,13 @@
 }
 
 .categoryTitle {
-  font-size: 1.65rem;
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
   color: var(--foreground);
+  word-break: break-word;
 }
 
 .categoryDescription {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1rem);
   color: var(--foreground-secondary);
   line-height: 1.6;
 }
@@ -98,12 +114,13 @@
 .skillsGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 540px) {
   .skillsGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
   }
 }
 
@@ -114,13 +131,14 @@
 }
 
 .skillCard {
-  padding: 1.15rem;
+  padding: clamp(0.9rem, 2.5vw, 1.15rem);
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  min-width: 0;
   transition: all var(--transition-fast) var(--ease-out);
 }
 
@@ -139,6 +157,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 .skillName {

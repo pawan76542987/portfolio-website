@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '@/components/ui/Icons';
 import { Mail, Copy, Check, Send, Sparkles, Phone } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { useSound } from '@/hooks/useSound';
 import styles from './ContactSection.module.css';
 
 export function ContactSection() {
@@ -20,29 +21,55 @@ export function ContactSection() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const { playSuccess, playClick } = useSound();
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    } catch {
+      // Fall through to fallback
+    }
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      return successful;
+    } catch {
+      return false;
+    }
+  };
 
   const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(personalInfo.email);
+    const ok = await copyToClipboard(personalInfo.email);
+    if (ok) {
       setCopied(true);
-      confetti({
-        particleCount: 40,
-        spread: 60,
-        origin: { y: 0.8 },
-      });
+      playSuccess();
+      try {
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.8 },
+        });
+      } catch {}
       setTimeout(() => setCopied(false), 2500);
-    } catch {
-      // Fallback
     }
   };
 
   const copyPhone = async () => {
-    try {
-      await navigator.clipboard.writeText(personalInfo.phone);
+    const ok = await copyToClipboard(personalInfo.phone);
+    if (ok) {
       setPhoneCopied(true);
+      playClick();
       setTimeout(() => setPhoneCopied(false), 2500);
-    } catch {
-      // Fallback
     }
   };
 
@@ -50,6 +77,7 @@ export function ContactSection() {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
+    playSuccess();
     // Trigger local mailto protocol with prefilled content
     const subject = encodeURIComponent(`Project Inquiry / Engineering Discussion — from ${formData.name}`);
     const body = encodeURIComponent(

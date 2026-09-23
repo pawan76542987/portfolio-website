@@ -1,12 +1,15 @@
 .principlesGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-6);
+  gap: var(--space-5);
+  min-width: 0;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .principlesGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
   }
 }
 
@@ -20,11 +23,12 @@
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: clamp(1.15rem, 3.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-4);
+  min-width: 0;
   transition: all var(--transition-fast) var(--ease-out);
 }
 

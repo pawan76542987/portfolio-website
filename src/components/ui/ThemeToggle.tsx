@@ -3,10 +3,12 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
+import { useSound } from '@/hooks/useSound';
 import styles from './ThemeToggle.module.css';
 
 export function ThemeToggle() {
   const { theme, toggleTheme, mounted } = useTheme();
+  const { playClick } = useSound();
 
   if (!mounted) {
     return <div className={styles.placeholder} aria-hidden="true" />;
@@ -14,10 +16,15 @@ export function ThemeToggle() {
 
   const isDark = theme === 'dark';
 
+  const handleClick = () => {
+    playClick();
+    toggleTheme();
+  };
+
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={handleClick}
       className={styles.toggleBtn}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
       title={`Switch to ${isDark ? 'light' : 'dark'} theme`}

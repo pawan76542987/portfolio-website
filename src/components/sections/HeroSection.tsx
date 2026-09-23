@@ -1,12 +1,17 @@
 'use client';
 
 import React from 'react';
-import { HeroScene } from '@/components/3d/HeroScene';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { personalInfo } from '@/data/socials';
-import { ArrowDown, Sparkles, Code2, Terminal, FileDown, Layers } from 'lucide-react';
+import { ArrowDown, Terminal, FileDown } from 'lucide-react';
 import styles from './HeroSection.module.css';
+
+const HeroScene = dynamic(
+  () => import('@/components/3d/HeroScene').then((mod) => mod.HeroScene),
+  { ssr: false }
+);
 
 export function HeroSection() {
   return (

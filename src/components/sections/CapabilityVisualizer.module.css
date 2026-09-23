@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-md);
+  min-width: 0;
+  width: 100%;
   transition: all var(--transition-normal) var(--ease-out);
 }
 
@@ -13,7 +15,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1.25rem;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: clamp(0.7rem, 2vw, 0.85rem) clamp(0.85rem, 2.5vw, 1.25rem);
   background-color: var(--surface-elevated);
   border-bottom: 1px solid var(--border);
 }
@@ -22,6 +26,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  min-width: 0;
 }
 
 .terminalDot {
@@ -30,45 +35,52 @@
   border-radius: 50%;
   background-color: var(--accent);
   box-shadow: 0 0 8px var(--accent);
+  flex-shrink: 0;
 }
 
 .headerLabel {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: clamp(0.6875rem, 2vw, 0.75rem);
   font-weight: 600;
   color: var(--foreground);
   letter-spacing: 0.06em;
+  word-break: break-word;
 }
 
 .activeTag {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   color: #34d399;
+  flex-shrink: 0;
 }
 
 .diagramCanvas {
-  height: 260px;
+  min-height: 180px;
+  max-height: 260px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
   background: var(--card-gradient);
+  overflow: hidden;
 }
 
 .svgDiagram {
   width: 100%;
-  height: 100%;
+  height: auto;
   max-height: 240px;
 }
 
 .visualizerFooter {
-  padding: 0.85rem 1.25rem;
+  padding: clamp(0.7rem, 2vw, 0.85rem) clamp(0.85rem, 2.5vw, 1.25rem);
   background-color: var(--surface-elevated);
   border-top: 1px solid var(--border);
 }
 
 .footerDescription {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: clamp(0.6875rem, 1.8vw, 0.75rem);
   color: var(--foreground-muted);
+  line-height: 1.4;
 }
